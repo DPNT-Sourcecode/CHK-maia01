@@ -349,10 +349,11 @@ namespace BeFaster.App.Solutions.CHK
                     }
                 }
 
-                return (bundle, matchedSkus);
+                if (totalMatches >= bundle.BundleQuantity)
+                    return (bundle, matchedSkus);
             }
 
-            return (null,null);
+            return (null, null);
         }
 
         private static decimal GetPriceOfSkuWithQty(char sku, int quantity)
@@ -413,5 +414,6 @@ namespace BeFaster.App.Solutions.CHK
 
 
 }
+
 
 
