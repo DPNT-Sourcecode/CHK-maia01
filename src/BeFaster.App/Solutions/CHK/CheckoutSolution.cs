@@ -73,7 +73,7 @@ namespace BeFaster.App.Solutions.CHK
 
         private static decimal GetPriceOfSkuWithQty(char kvp, int quantity)
         {
-            int quantityquantity = quantity;
+            int remainingquantity = quantity;
 
 
             throw new NotImplementedException();
