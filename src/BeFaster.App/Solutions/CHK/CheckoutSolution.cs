@@ -18,7 +18,7 @@ namespace BeFaster.App.Solutions.CHK
         //+------+-------+----------------+
 
 
-      
+
 
         internal class Product
         {
@@ -40,7 +40,7 @@ namespace BeFaster.App.Solutions.CHK
 
             public int Type { get; set; } = 0;
 
-            public List<ProductOffer> ProductOffers{ get; set; }
+            public List<ProductOffer> ProductOffers { get; set; }
 
         }
 
@@ -50,7 +50,7 @@ namespace BeFaster.App.Solutions.CHK
             public int Quantity { get; set; }
         }
 
-        static List<Product> prices = new List<Product>() {
+        static List<Product> productPrices = new List<Product>() {
 
             new Product{ SKU = 'A', Price = 50, SpecialOffers = new List<SpecialOffer> {
 
@@ -64,8 +64,11 @@ namespace BeFaster.App.Solutions.CHK
              new Product{ SKU = 'D', Price = 15, SpecialOffers =new List<SpecialOffer> { } },
 
              new Product{ SKU = 'E', Price = 40, SpecialOffers =new List<SpecialOffer> {
-             
-                 new SpecialOffer  { Quantity = 2, Type = 1, Product }
+
+                 new SpecialOffer  { Quantity = 2, Type = 1, ProductOffers = new List<ProductOffer>{
+
+                 new ProductOffer  { Sku = 'B', Quantity =1, }
+                 } }
              } },
         };
 
@@ -85,24 +88,29 @@ namespace BeFaster.App.Solutions.CHK
                 if (!char.IsLetter(sku))
                     continue;
 
-                if (!prices.Select(x => x.SKU).ToList().Any(x => x.Equals(sku)))
+                if (!productPrices.Select(x => x.SKU).ToList().Any(x => x.Equals(sku)))
                     return -1;
 
                 if (skuQtyDict.ContainsKey(sku))
                     skuQtyDict[sku]++;
                 else
                 {
-                    skuQtyDict.Add( sku, 1);
+                    skuQtyDict.Add(sku, 1);
                 }
             }
 
             //TODO: deduct the qty for B if we have E or any 
-           
 
-            if(skuQtyDict.Keys.Count ==0)
+            List<ProductOffer> productOffers = new List<ProductOffer>();
+
+            productOffers = prod
+            
+
+
+            if (skuQtyDict.Keys.Count == 0)
                 return -1;
 
-            if (!skuQtyDict.Keys.Any( x=> !x.Equals(prices.Select(x=> x.SKU))))
+            if (!skuQtyDict.Keys.Any(x => !x.Equals(productPrices.Select(x => x.SKU))))
                 return -1;
 
             int totalprice = 0;
@@ -121,11 +129,12 @@ namespace BeFaster.App.Solutions.CHK
             int remainingQuantity = quantity;
             decimal totalPrice = 0;
 
-            var skuprice = prices.FirstOrDefault(x => x.SKU == sku);
+            var skuprice = productPrices.FirstOrDefault(x => x.SKU == sku);
 
             if (skuprice.SpecialOffers?.Count > 0)
             {
-                while (remainingQuantity > 0 && skuprice.SpecialOffers.Any(x => x.Quantity <= remainingQuantity)) { 
+                while (remainingQuantity > 0 && skuprice.SpecialOffers.Any(x => x.Quantity <= remainingQuantity))
+                {
 
                     foreach (var specialOffer in skuprice.SpecialOffers?.OrderBy(x => x.Quantity))
                     {
@@ -150,5 +159,6 @@ namespace BeFaster.App.Solutions.CHK
         }
     }
 
-   
+
 }
+
