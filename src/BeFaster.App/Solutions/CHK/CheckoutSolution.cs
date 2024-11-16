@@ -152,9 +152,11 @@ namespace BeFaster.App.Solutions.CHK
 
                             else
                             {
+                                if (skuQtyDict.ContainsKey(productOffer.SKU))
+                                {
 
-
-                                skuQtyDict[productOffer.SKU] = skuQtyDict[productOffer.SKU] - productOffer.Quantity * toDeduct;
+                                    skuQtyDict[productOffer.SKU] = skuQtyDict[productOffer.SKU] - productOffer.Quantity * toDeduct;
+                                }
 
 
                             }
@@ -166,88 +168,89 @@ namespace BeFaster.App.Solutions.CHK
 
 
 
-                if (skuQtyDict.Keys.Count == 0)
-                    return -1;
+            if (skuQtyDict.Keys.Count == 0)
+                return -1;
 
-                if (!skuQtyDict.Keys.Any(x => !x.Equals(productPrices.Select(x => x.SKU))))
-                    return -1;
+            if (!skuQtyDict.Keys.Any(x => !x.Equals(productPrices.Select(x => x.SKU))))
+                return -1;
 
-                int totalprice = 0;
-                int totaldiscount = 0;
+            int totalprice = 0;
+            int totaldiscount = 0;
 
-                foreach (var kvp in skuQtyDict.Keys)
-                {
-                    decimal price = GetPriceOfSkuWithQty(kvp, skuQtyDict[kvp]);
-                    totalprice += (int)price;
-                }
-
-                foreach (var kvp in discountDict.Keys)
-                {
-                    decimal price = GetPriceOfSkuWithQty(kvp, discountDict[kvp]);
-                    totaldiscount += (int)price;
-                }
-
-                return totalprice - totaldiscount;
-            }
-
-            private static decimal GetPriceOfSkuWithQty(char sku, int quantity)
+            foreach (var kvp in skuQtyDict.Keys)
             {
-                int remainingQuantity = quantity;
-                decimal totalPrice = 0;
+                decimal price = GetPriceOfSkuWithQty(kvp, skuQtyDict[kvp]);
+                totalprice += (int)price;
+            }
 
-                var skuprice = productPrices.FirstOrDefault(x => x.SKU == sku);
+            foreach (var kvp in discountDict.Keys)
+            {
+                decimal price = GetPriceOfSkuWithQty(kvp, discountDict[kvp]);
+                totaldiscount += (int)price;
+            }
 
-                var specialOffers = skuprice.SpecialOffers.Where(x => x.Type == 0).ToList();
+            return totalprice - totaldiscount;
+        }
 
-                if (specialOffers.Count > 0)
+        private static decimal GetPriceOfSkuWithQty(char sku, int quantity)
+        {
+            int remainingQuantity = quantity;
+            decimal totalPrice = 0;
+
+            var skuprice = productPrices.FirstOrDefault(x => x.SKU == sku);
+
+            var specialOffers = skuprice.SpecialOffers.Where(x => x.Type == 0).ToList();
+
+            if (specialOffers.Count > 0)
+            {
+                while (remainingQuantity > 0 && specialOffers.Any(x => x.Quantity <= remainingQuantity))
                 {
-                    while (remainingQuantity > 0 && specialOffers.Any(x => x.Quantity <= remainingQuantity))
-                    {
 
-                        var specialOffer = specialOffers?.Where(x => x.Quantity <= remainingQuantity).OrderByDescending(x => x.Quantity).FirstOrDefault();
+                    var specialOffer = specialOffers?.Where(x => x.Quantity <= remainingQuantity).OrderByDescending(x => x.Quantity).FirstOrDefault();
 
 
-                        if (remainingQuantity < specialOffer.Quantity)
-                            continue;
+                    if (remainingQuantity < specialOffer.Quantity)
+                        continue;
 
-                        remainingQuantity -= specialOffer.Quantity;
-                        totalPrice += specialOffer.Price;
+                    remainingQuantity -= specialOffer.Quantity;
+                    totalPrice += specialOffer.Price;
 
 
-                    }
                 }
-
-                if (remainingQuantity > 0)
-                    totalPrice += remainingQuantity * skuprice.Price;
-
-
-                return totalPrice;
             }
 
-
-            private static decimal GetDiscount(char sku, int quantity)
-            {
-                return GetPriceOfSkuWithQty(sku, quantity);
-            }
+            if (remainingQuantity > 0)
+                totalPrice += remainingQuantity * skuprice.Price;
 
 
-            private static int RecursiveDiscount(int total, int totalDiscountSoFar)
-            {
-
-
-                if (total <= 2)
-                    return totalDiscountSoFar;
-
-                return RecursiveDiscount(total - 3, ++totalDiscountSoFar); // 2, 0
-                                                                           // 3 => 1, 1
-                                                                           // 4 => 2, 1
-                                                                           // 5 => 3(1) , 1 
-                                                                           // 6 => 4 (1), 1 + 1
-            }
+            return totalPrice;
         }
 
 
+        private static decimal GetDiscount(char sku, int quantity)
+        {
+            return GetPriceOfSkuWithQty(sku, quantity);
+        }
+
+
+        private static int RecursiveDiscount(int total, int totalDiscountSoFar)
+        {
+
+
+            if (total <= 2)
+                return totalDiscountSoFar;
+
+            return RecursiveDiscount(total - 3, ++totalDiscountSoFar); // 2, 0
+                                                                       // 3 => 1, 1
+                                                                       // 4 => 2, 1
+                                                                       // 5 => 3(1) , 1 
+                                                                       // 6 => 4 (1), 1 + 1
+        }
     }
+
+
+}
+
 
 
 
