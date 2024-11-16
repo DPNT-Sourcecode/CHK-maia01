@@ -234,9 +234,11 @@ namespace BeFaster.App.Solutions.CHK
                     {
                         skuQtyDict[sku]--;
                         i--;
+                        if (i == 0)
+                            break;
                     }
 
-                    
+
                 }
 
 
@@ -421,6 +423,7 @@ namespace BeFaster.App.Solutions.CHK
 
 
 }
+
 
 
 
