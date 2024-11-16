@@ -212,10 +212,14 @@ namespace BeFaster.App.Solutions.CHK
             }
 
             //TODO : if we have enough qty in dictionary so that we match any bundle - reduce products and increase price
+            var bundle = BundleMatch(skuQtyDict, bundleOffers);
 
-            while (BundleMatch(skuQtyDict, bundleOffers))
+            while (bundle != null)
             {
 
+                foreach (char sku in bundle)
+
+                bundle = BundleMatch(skuQtyDict, bundleOffers);
             }
 
 
@@ -298,7 +302,7 @@ namespace BeFaster.App.Solutions.CHK
             return totalprice - totaldiscount;
         }
 
-        private static bool BundleMatch(Dictionary<char, int> skuQtyDict, List<BundleOffer> bundleOffers)
+        private static BundleOffer? BundleMatch(Dictionary<char, int> skuQtyDict, List<BundleOffer> bundleOffers)
         {
 
 
@@ -323,14 +327,14 @@ namespace BeFaster.App.Solutions.CHK
 
                 foreach (var key in matchesForProductSku.Keys)
                 {
-                    if(item )
+                    if (matchesForProductSku[key] ==0)
+                        totalMatches++;
                 }
 
-
+                return bundle;
             }
 
-
-            return true;
+            return null;
         }
 
         private static decimal GetPriceOfSkuWithQty(char sku, int quantity)
@@ -391,6 +395,7 @@ namespace BeFaster.App.Solutions.CHK
 
 
 }
+
 
 
 
