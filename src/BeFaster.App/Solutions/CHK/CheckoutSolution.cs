@@ -84,7 +84,7 @@ namespace BeFaster.App.Solutions.CHK
 
               new Product{ SKU = 'G', Price = 20, SpecialOffers =new List<SpecialOffer> { } },
 
-              new Product{ SKU = 'H', Price = 50, SpecialOffers = new List<SpecialOffer> {
+              new Product{ SKU = 'H', Price = 10, SpecialOffers = new List<SpecialOffer> {
 
                    new  SpecialOffer { Quantity = 5, Price = 45},
                    new  SpecialOffer { Quantity = 10, Price = 80},
@@ -313,7 +313,7 @@ namespace BeFaster.App.Solutions.CHK
             if (total <= 2)
                 return totalDiscountSoFar;
 
-            return RecursiveDiscount(total - 3, ++totalDiscountSoFar); // 2, 0
+            return RecursiveDiscount(total - 4, ++totalDiscountSoFar); // 2, 0
                                                                        // 3 => 1, 1
                                                                        // 4 => 2, 1
                                                                        // 5 => 3(1) , 1 
@@ -323,6 +323,7 @@ namespace BeFaster.App.Solutions.CHK
 
 
 }
+
 
 
 
