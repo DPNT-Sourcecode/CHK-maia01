@@ -127,23 +127,30 @@ namespace BeFaster.App.Solutions.CHK
                         {
                             // 1             2                        / 2
                             // 1             3                        / 2
-                            int toDeduct = skuQtyDict[products.SKU] / offer.Quantity;
+                            int toDeduct = 0;
 
-                            if (skuQtyDict.ContainsKey(productOffer.SKU) && skuQtyDict[productOffer.SKU] >= productOffer.Quantity) {
+                            if (skuQtyDict[products.SKU] > 2)
+                            {
+                                toDeduct = skuQtyDict[products.SKU] / offer.Quantity;
+                            }
+
+                            if (skuQtyDict.ContainsKey(productOffer.SKU) && skuQtyDict[productOffer.SKU] >= productOffer.Quantity)
+                            {
 
                                 if (!discountDict.ContainsKey(productOffer.SKU))
                                 {
                                     discountDict.Add(productOffer.SKU, productOffer.Quantity * toDeduct);
                                 }
-                                else { 
-                                
+                                else
+                                {
+
                                 }
 
                                 //skuQtyDict[productOffer.SKU] = skuQtyDict[productOffer.SKU]  - productOffer.Quantity * toDeduct;
 
                             }
 
-                          
+
                         }
                     }
 
@@ -159,6 +166,7 @@ namespace BeFaster.App.Solutions.CHK
                 return -1;
 
             int totalprice = 0;
+            int totaldiscount = 0;
 
             foreach (var kvp in skuQtyDict.Keys)
             {
@@ -166,7 +174,13 @@ namespace BeFaster.App.Solutions.CHK
                 totalprice += (int)price;
             }
 
-            return totalprice;
+            foreach (var kvp in discountDict.Keys)
+            {
+                decimal price = GetPriceOfSkuWithQty(kvp, discountDict[kvp]);
+                totaldiscount += (int)price;
+            }
+
+            return totalprice - totaldiscount;
         }
 
         private static decimal GetPriceOfSkuWithQty(char sku, int quantity)
@@ -212,3 +226,4 @@ namespace BeFaster.App.Solutions.CHK
 
 
 }
+
