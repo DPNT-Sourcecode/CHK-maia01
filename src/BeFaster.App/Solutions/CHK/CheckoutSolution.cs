@@ -16,13 +16,31 @@ namespace BeFaster.App.Solutions.CHK
         //+------+-------+----------------+
 
 
-        Dictionary<string, int> priceTable = new Dictionary<string, int>();
+        internal class SkuPrice
+        {
+
+            public char SKU { get; set; }
+            public decimal Price { get; set; }
+        }
+
+        static List<SkuPrice> prices = new List<SkuPrice>() {
+
+        };
+
 
 
 
         public static int ComputePrice(string? skus)
         {
-            throw new SolutionNotImplementedException();
+            foreach (char sku in skus)
+            {
+
+                if (sku < 65 || sku > 68)
+                    return -1;
+
+
+
+            }
         }
     }
 }
