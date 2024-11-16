@@ -90,34 +90,37 @@ namespace BeFaster.App.Solutions.CHK
 
         private static decimal GetPriceOfSkuWithQty(char sku, int quantity)
         {
-            int remainingquantity = quantity;
+            int remainingQuantity = quantity;
             decimal totalPrice = 0;
 
             var skuprice = prices.FirstOrDefault(x => x.SKU == sku);
 
             if (skuprice.SpecialOffers?.Count > 0)
             {
+                while (remainingQuantity > 0 && skuprice.SpecialOffers.Any(x => x.Quantity <= remainingQuantity)) { 
 
-                foreach (var specialOffer in skuprice.SpecialOffers?.OrderBy(x => x.Quantity))
-                {
+                    foreach (var specialOffer in skuprice.SpecialOffers?.OrderBy(x => x.Quantity))
+                    {
 
-                    if (remainingquantity < specialOffer.Quantity)
-                        break;
+                        if (remainingQuantity < specialOffer.Quantity)
+                            break;
 
-                    remainingquantity -= specialOffer.Quantity;
-                    totalPrice += specialOffer.Price;
+                        remainingQuantity -= specialOffer.Quantity;
+                        totalPrice += specialOffer.Price;
 
+
+                    }
 
                 }
-
             }
 
-            if (remainingquantity != 0)
-                totalPrice += remainingquantity * skuprice.Price;
+            if (remainingQuantity != 0)
+                totalPrice += remainingQuantity * skuprice.Price;
 
 
             return totalPrice;
         }
     }
 }
+
 

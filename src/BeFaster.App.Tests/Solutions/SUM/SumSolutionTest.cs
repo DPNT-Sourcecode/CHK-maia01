@@ -18,12 +18,13 @@ namespace BeFaster.App.Tests.Solutions.SUM
     [TestFixture]
     public class CheckoutSolutionTest
     {
-        [TestCase("AAAAAA", ExpectedResult = 260)]
+        [TestCase("BBBB", ExpectedResult = 90)]
         public int ComputePrice(string x)
         {
             return CheckoutSolution.ComputePrice(x);
         }
     }
 }
+
 
 
