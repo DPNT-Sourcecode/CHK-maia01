@@ -83,14 +83,20 @@ namespace BeFaster.App.Solutions.CHK
 
             var skuprice = prices.FirstOrDefault(x => x.SKU == sku);
 
-            foreach (var specialOffer in skuprice.SpecialOffers.OrderBy(x=>x.Quantity)) {
+            if (skuprice.SpecialOffers?.Count > 0)
+            {
 
-                if (remainingquantity < specialOffer.Quantity)
-                    break;
+                foreach (var specialOffer in skuprice.SpecialOffers?.OrderBy(x => x.Quantity))
+                {
 
-                remainingquantity -= specialOffer.Quantity;
-                totalPrice += specialOffer.Price;
+                    if (remainingquantity < specialOffer.Quantity)
+                        break;
 
+                    remainingquantity -= specialOffer.Quantity;
+                    totalPrice += specialOffer.Price;
+
+
+                }
 
             }
 
@@ -102,6 +108,7 @@ namespace BeFaster.App.Solutions.CHK
         }
     }
 }
+
 
 
 
