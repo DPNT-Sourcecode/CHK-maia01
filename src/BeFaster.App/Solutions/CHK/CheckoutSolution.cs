@@ -227,9 +227,16 @@ namespace BeFaster.App.Solutions.CHK
 
                 totalprice += (int)response.bundle.Price;
 
-                foreach (var sku in bundleProductSkus)
+                int i = response.bundle.BundleQuantity;
+                while (i != 0)
                 {
-                    skuQtyDict[sku]--;
+                    foreach (var sku in bundleProductSkus)
+                    {
+                        skuQtyDict[sku]--;
+                        i--;
+                    }
+
+                    
                 }
 
 
@@ -342,7 +349,7 @@ namespace BeFaster.App.Solutions.CHK
 
                 foreach (var key in matchesForProductSku.Keys)
                 {
-                    if (matchesForProductSku[key] == 0)
+                    if (matchesForProductSku[key] < 0)
                     {
                         matchedSkus.Add(key);
                         totalMatches += Math.Abs(skuQtyDict[key]);
@@ -414,6 +421,7 @@ namespace BeFaster.App.Solutions.CHK
 
 
 }
+
 
 
 
