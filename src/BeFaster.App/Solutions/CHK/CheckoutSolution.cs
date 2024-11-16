@@ -155,7 +155,7 @@ namespace BeFaster.App.Solutions.CHK
                  } }
              } },
 
-             new Product{ SKU = 'S', Price = 30, SpecialOffers =new List<SpecialOffer> { } },
+             new Product{ SKU = 'S', Price = 20, SpecialOffers =new List<SpecialOffer> { } },
              new Product{ SKU = 'T', Price = 20, SpecialOffers =new List<SpecialOffer> { } },
 
 
@@ -175,9 +175,9 @@ namespace BeFaster.App.Solutions.CHK
             } },
 
                 new Product{ SKU = 'W', Price = 20, SpecialOffers =new List<SpecialOffer> { } },
-                new Product{ SKU = 'X', Price = 90, SpecialOffers =new List<SpecialOffer> { } },
-                new Product{ SKU = 'Y', Price = 10, SpecialOffers =new List<SpecialOffer> { } },
-                new Product{ SKU = 'Z', Price = 50, SpecialOffers =new List<SpecialOffer> { } },
+                new Product{ SKU = 'X', Price = 17, SpecialOffers =new List<SpecialOffer> { } },
+                new Product{ SKU = 'Y', Price = 20, SpecialOffers =new List<SpecialOffer> { } },
+                new Product{ SKU = 'Z', Price = 21, SpecialOffers =new List<SpecialOffer> { } },
 
         };
 
@@ -414,6 +414,7 @@ namespace BeFaster.App.Solutions.CHK
 
 
 }
+
 
 
 
