@@ -335,7 +335,7 @@ namespace BeFaster.App.Solutions.CHK
 
                 foreach (var key in skuQtyDict.Keys)
                 {
-                    if (matchesForProductSku.ContainsKey(key) && matchesForProductSku[key] > 0)
+                    if (matchesForProductSku.ContainsKey(key) && skuQtyDict[key] > 0)
                         matchesForProductSku[key]--;
                 }
 
@@ -414,6 +414,7 @@ namespace BeFaster.App.Solutions.CHK
 
 
 }
+
 
 
 
