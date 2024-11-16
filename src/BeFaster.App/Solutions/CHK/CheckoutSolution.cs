@@ -105,7 +105,11 @@ namespace BeFaster.App.Solutions.CHK
 
             var specialOffers = productPrices.ToList().Where(x => x.SpecialOffers.Count > 0 && x.SpecialOffers.Any(x => x.Type == 1)).ToList();
 
+            foreach (var specialOffer in specialOffers)
+            {
+                if(specialOffer.SKU)
 
+            }
             
 
 
@@ -163,5 +167,6 @@ namespace BeFaster.App.Solutions.CHK
 
 
 }
+
 
 
