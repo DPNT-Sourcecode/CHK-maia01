@@ -51,19 +51,27 @@ namespace BeFaster.App.Solutions.CHK
             public int Quantity { get; set; }
         }
 
-        class BundleOffers {
+        class BundleOffer {
 
 
             public string Name { get; set; }
             public decimal Price { get; set; }
             public int BundleQuantity { get; set; }
-            public List<Product> Products { get; set; }
+            public List<char> ProductSkus { get; set; }
         }
 
 
-        static List<BundleOffers> bundleOffers = new List<BundleOffers>()
+        static List<BundleOffer> bundleOffers = new List<BundleOffer>()
         {
+            new BundleOffer
+            {
 
+                Name ="Summer Bundle",
+                Price = 45,
+
+                ProductSkus = new List<char>(){ 'S','T', 'X', 'Y', 'Z' }
+
+            }
         };
 
         static List<Product> productPrices = new List<Product>() {
@@ -338,4 +346,5 @@ namespace BeFaster.App.Solutions.CHK
 
 
 }
+
 
