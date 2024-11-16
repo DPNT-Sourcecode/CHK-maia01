@@ -305,8 +305,29 @@ namespace BeFaster.App.Solutions.CHK
             foreach (var bundle in bundleOffers)
             {
                 int[] arr = new int[26];
+                int totalMatches = 0;
+
+                foreach (var product in bundle.ProductSkus)
+                {
+                    arr[product - 'A']--;
+                }
+
+                foreach (var key in skuQtyDict.Keys)
+                {
+                    arr[key - 'A']++;
+                }
+
+
+                foreach (var item in arr)
+                {
+
+                }
+
 
             }
+
+
+            return true;
         }
 
         private static decimal GetPriceOfSkuWithQty(char sku, int quantity)
@@ -367,6 +388,7 @@ namespace BeFaster.App.Solutions.CHK
 
 
 }
+
 
 
 
