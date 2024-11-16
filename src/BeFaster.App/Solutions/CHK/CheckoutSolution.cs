@@ -21,7 +21,7 @@ namespace BeFaster.App.Solutions.CHK
         {
             public SkuPrice()
             {
-                SpecialOffers = = new List<SpecialOffer>();
+                SpecialOffers = new List<SpecialOffer>();
             }
 
             public char SKU { get; set; }
@@ -102,5 +102,6 @@ namespace BeFaster.App.Solutions.CHK
         }
     }
 }
+
 
 
