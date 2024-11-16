@@ -93,9 +93,9 @@ namespace BeFaster.App.Solutions.CHK
             new Product{ SKU = 'I', Price = 35, SpecialOffers =new List<SpecialOffer> { } },
             new Product{ SKU = 'J', Price = 60, SpecialOffers =new List<SpecialOffer> { } },
 
-            new Product{ SKU = 'K', Price = 80, SpecialOffers =new List<SpecialOffer> {
+            new Product{ SKU = 'K', Price = 70, SpecialOffers =new List<SpecialOffer> {
 
-                new  SpecialOffer { Quantity = 2,Price = 150},
+                new  SpecialOffer { Quantity = 2,Price = 120},
             } },
 
             new Product{ SKU = 'L', Price = 90, SpecialOffers =new List<SpecialOffer> { } },
@@ -323,6 +323,7 @@ namespace BeFaster.App.Solutions.CHK
 
 
 }
+
 
 
 
