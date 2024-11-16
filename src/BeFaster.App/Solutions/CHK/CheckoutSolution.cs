@@ -34,8 +34,15 @@ namespace BeFaster.App.Solutions.CHK
 
         public static int ComputePrice(string? skus)
         {
+            int qty = 0;
+            char product;
+
             foreach (char sku in skus)
             {
+                if(Char.IsLetter(sku))
+                    product = sku;
+                else qty = sku;
+
 
                 if (sku < 65 || sku > 68)
                     return -1;
@@ -43,8 +50,11 @@ namespace BeFaster.App.Solutions.CHK
 
 
             }
+
+            return 1;
         }
     }
 }
+
 
 
