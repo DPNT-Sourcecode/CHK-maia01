@@ -330,7 +330,7 @@ namespace BeFaster.App.Solutions.CHK
                 foreach (var product in bundle.ProductSkus)
                 {
 
-                    matchesForProductSku.Add(product, 1);
+                    matchesForProductSku.Add(product, 0);
                 }
 
                 foreach (var key in skuQtyDict.Keys)
@@ -414,6 +414,7 @@ namespace BeFaster.App.Solutions.CHK
 
 
 }
+
 
 
 
