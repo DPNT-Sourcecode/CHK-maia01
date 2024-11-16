@@ -1,4 +1,5 @@
-﻿using BeFaster.Runner.Exceptions;
+﻿using BeFaster.App.Solutions.CHK;
+using BeFaster.Runner.Exceptions;
 
 namespace BeFaster.App.Solutions.CHK
 {
@@ -22,21 +23,23 @@ namespace BeFaster.App.Solutions.CHK
             public char SKU { get; set; }
             public decimal Price { get; set; }
 
-            public Dictionary<int,int> SpecialOffers { get; set; }
+            public List<SpecialOffer> SpecialOffers { get; set; }
         }
 
         static List<SkuPrice> prices = new List<SkuPrice>() {
 
-            new SkuPrice{ SKU = 'A', Price = 50, SpecialOffers = new Dictionary<int, int> {
+            new SkuPrice{ SKU = 'A', Price = 50, SpecialOffers = new List<SpecialOffer> {
 
-                { 3,130}
+               new  SpecialOffer { Quantity = 3, Price = 130},
             } },
-             new SkuPrice{ SKU = 'B', Price = 30, SpecialOffers = new Dictionary<int, int> {
+             new SkuPrice{ SKU = 'B', Price = 30, SpecialOffers =new List<SpecialOffer> {
 
-                { 2,45},
+                new  SpecialOffer { Quantity = 2,Price = 45},
             } },
-             new SkuPrice{ SKU = 'C', Price = 20, SpecialOffers = new Dictionary<int, int> {} },
-             new SkuPrice{ SKU = 'D', Price = 15, SpecialOffers = new Dictionary<int, int> {} },
+
+             new SkuPrice{ SKU = 'C', Price = 20, SpecialOffers =new List<SpecialOffer>{} },
+
+             new SkuPrice{ SKU = 'D', Price = 15, SpecialOffers =new List<SpecialOffer> { } },
 
         };
 
@@ -75,13 +78,10 @@ namespace BeFaster.App.Solutions.CHK
         {
             int remainingquantity = quantity;
 
+            if(remainingquantity > prices.Where(x=>x.SKU == kvp).FirstOrDefault().SpecialOffers[])
+
 
             throw new NotImplementedException();
         }
     }
 }
-
-
-
-
-
