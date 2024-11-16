@@ -57,13 +57,19 @@ namespace BeFaster.App.Solutions.CHK
 
             foreach (char sku in skus)
             {
+                if (!char.IsLetter(sku))
+                    continue;
+
                 if (skuQty.ContainsKey(sku))
-                    skuQty[sku]++;
+                    skuQty[Char.ToUpper(sku)]++;
                 else
                 {
-                    skuQty.Add(sku, 1);
+                    skuQty.Add( Char.ToUpper(sku), 1);
                 }
             }
+
+            if(skuQty.Keys.Count ==0)
+                return -1;
 
             int totalprice = 0;
 
@@ -108,6 +114,7 @@ namespace BeFaster.App.Solutions.CHK
         }
     }
 }
+
 
 
 
