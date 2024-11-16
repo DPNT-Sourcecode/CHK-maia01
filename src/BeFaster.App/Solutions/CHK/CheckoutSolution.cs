@@ -124,13 +124,19 @@ namespace BeFaster.App.Solutions.CHK
                     {
                         foreach (var productOffer in offer.ProductOffers)
                         {
+                            // 1             2                        / 2
+                            // 1             3                        / 2
                             int toDeduct = skuQtyDict[products.SKU] / offer.Quantity;
 
-                            if(products.SKU == productOffer.SKU)
+                            if (products.SKU == productOffer.SKU && skuQtyDict[products.SKU] - toDeduct % 2 != 0) { 
+                            
+
+                                
 
 
                             if (skuQtyDict.ContainsKey(productOffer.SKU) && skuQtyDict[productOffer.SKU] >= productOffer.Quantity)
                                 skuQtyDict[productOffer.SKU] = skuQtyDict[productOffer.SKU]  - productOffer.Quantity * toDeduct;
+                            }
                         }
                     }
 
@@ -193,5 +199,6 @@ namespace BeFaster.App.Solutions.CHK
 
 
 }
+
 
 
