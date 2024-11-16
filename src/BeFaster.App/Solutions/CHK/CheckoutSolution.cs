@@ -1,6 +1,7 @@
 ﻿using BeFaster.App.Solutions.CHK;
 using BeFaster.Runner.Exceptions;
 using System.Net.Http.Headers;
+using System.Runtime.CompilerServices;
 
 namespace BeFaster.App.Solutions.CHK
 {
@@ -114,9 +115,11 @@ namespace BeFaster.App.Solutions.CHK
                     {
                         foreach (var productOffer in offer.ProductOffers)
                         {
+                            int toDeduct = skuQtyDict[products.SKU] / offer.Quantity;
+
 
                             if (skuQtyDict.ContainsKey(productOffer.SKU) && skuQtyDict[productOffer.SKU] >= productOffer.Quantity)
-                                skuQtyDict[productOffer.SKU]--;
+                                skuQtyDict[productOffer.SKU] = skuQtyDict[productOffer.SKU]  - productOffer.Quantity * toDeduct;
                         }
                     }
 
@@ -179,5 +182,6 @@ namespace BeFaster.App.Solutions.CHK
 
 
 }
+
 
 
