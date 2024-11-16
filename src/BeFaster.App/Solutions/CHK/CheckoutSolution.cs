@@ -27,6 +27,17 @@ namespace BeFaster.App.Solutions.CHK
 
         static List<SkuPrice> prices = new List<SkuPrice>() {
 
+            new SkuPrice{ SKU = 'A', Price = 50, SpecialOffers = new Dictionary<int, int> {
+
+                { 3,130}
+            } },
+             new SkuPrice{ SKU = 'B', Price = 30, SpecialOffers = new Dictionary<int, int> {
+
+                { 2,45},
+            } },
+             new SkuPrice{ SKU = 'C', Price = 20, SpecialOffers = new Dictionary<int, int> {} },
+             new SkuPrice{ SKU = 'D', Price = 15, SpecialOffers = new Dictionary<int, int> {} },
+
         };
 
 
@@ -54,13 +65,22 @@ namespace BeFaster.App.Solutions.CHK
 
             foreach (var kvp in skuQty.Keys)
             {
-
+                decimal price = GetPriceOfSkuWithQty(kvp, skuQty[kvp]);
             }
 
             return totalprice;
         }
+
+        private static decimal GetPriceOfSkuWithQty(char kvp, int quantity)
+        {
+            int quantityquantity = quantity;
+
+
+            throw new NotImplementedException();
+        }
     }
 }
+
 
 
 
