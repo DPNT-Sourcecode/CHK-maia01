@@ -89,6 +89,9 @@ namespace BeFaster.App.Solutions.CHK
         public static int ComputePrice(string? skus)
         {
 
+            String.Concat(skus.OrderBy(c => c));
+
+
             if (String.IsNullOrWhiteSpace(skus))
                 return 0;
 
@@ -254,5 +257,6 @@ namespace BeFaster.App.Solutions.CHK
 
 
 }
+
 
 
