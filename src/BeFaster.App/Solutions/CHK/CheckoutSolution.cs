@@ -134,14 +134,11 @@ namespace BeFaster.App.Solutions.CHK
                                 toDeduct = skuQtyDict[product.SKU] / offer.Quantity;
                             }
 
-                            if (productOffer.SKU == product.SKU) {
+                            if (productOffer.SKU == product.SKU)
+                            {
+                                if (skuQtyDict[product.SKU] - offer.Quantity > 0)
+                                {
 
-                                var totalQty = skuQtyDict[product.SKU];
-
-                                var discountedItems  = totalQty / offer.Quantity;
-
-                                if (totalQty - offer.Quantity > 0) { 
-                                
                                 }
                                 else
                                 {
@@ -149,6 +146,9 @@ namespace BeFaster.App.Solutions.CHK
                                     toDeduct -= 1;
 
                                 }
+                            }
+                            else { 
+                            
                             }
 
                             if (skuQtyDict.ContainsKey(productOffer.SKU) && skuQtyDict[productOffer.SKU] >= productOffer.Quantity)
@@ -243,6 +243,7 @@ namespace BeFaster.App.Solutions.CHK
 
 
 }
+
 
 
 
