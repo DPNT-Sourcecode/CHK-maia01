@@ -51,6 +51,21 @@ namespace BeFaster.App.Solutions.CHK
             public int Quantity { get; set; }
         }
 
+        class BundleOffers {
+
+
+            public string Name { get; set; }
+            public decimal Price { get; set; }
+            public int BundleQuantity { get; set; }
+            public List<Product> Products { get; set; }
+        }
+
+
+        static List<BundleOffers> bundleOffers = new List<BundleOffers>()
+        {
+
+        };
+
         static List<Product> productPrices = new List<Product>() {
 
             new Product{ SKU = 'A', Price = 50, SpecialOffers = new List<SpecialOffer> {
@@ -323,3 +338,4 @@ namespace BeFaster.App.Solutions.CHK
 
 
 }
+
