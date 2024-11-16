@@ -89,7 +89,7 @@ namespace BeFaster.App.Solutions.CHK
                    new  SpecialOffer { Quantity = 5, Price = 45},
                    new  SpecialOffer { Quantity = 10, Price = 80},
                 } },
-              
+
             new Product{ SKU = 'I', Price = 35, SpecialOffers =new List<SpecialOffer> { } },
             new Product{ SKU = 'J', Price = 60, SpecialOffers =new List<SpecialOffer> { } },
 
@@ -103,11 +103,35 @@ namespace BeFaster.App.Solutions.CHK
 
             new Product{ SKU = 'N', Price = 40, SpecialOffers =new List<SpecialOffer> {
 
-                 new SpecialOffer  { Quantity = 2, Type = 1, ProductOffers = new List<ProductOffer>{
+                 new SpecialOffer  { Quantity = 3, Type = 1, ProductOffers = new List<ProductOffer>{
 
-                 new ProductOffer  { SKU = 'F', Quantity =1, }
+                 new ProductOffer  { SKU = 'M', Quantity =1, }
                  } }
              } },
+
+            new Product{ SKU = 'O', Price = 10, SpecialOffers =new List<SpecialOffer> { } },
+
+            new Product{ SKU = 'P', Price = 50, SpecialOffers =new List<SpecialOffer> {
+
+                new  SpecialOffer { Quantity = 5,Price = 200},
+            } },
+
+            new Product{ SKU = 'Q', Price = 30, SpecialOffers =new List<SpecialOffer> {
+
+                new  SpecialOffer { Quantity = 3,Price = 80},
+            } },
+
+
+             new Product{ SKU = 'R', Price = 50, SpecialOffers =new List<SpecialOffer> {
+
+                 new SpecialOffer  { Quantity = 3, Type = 1, ProductOffers = new List<ProductOffer>{
+
+                 new ProductOffer  { SKU = 'Q', Quantity =1, }
+                 } }
+             } },
+
+               new Product{ SKU = 'S', Price = 30, SpecialOffers =new List<SpecialOffer> { } },
+                 new Product{ SKU = 'T', Price = 20, SpecialOffers =new List<SpecialOffer> { } },
 
 
         };
@@ -279,5 +303,6 @@ namespace BeFaster.App.Solutions.CHK
 
 
 }
+
 
 
