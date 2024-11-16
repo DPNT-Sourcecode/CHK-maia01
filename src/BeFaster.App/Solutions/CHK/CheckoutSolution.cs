@@ -1,5 +1,6 @@
 ﻿using BeFaster.App.Solutions.CHK;
 using BeFaster.Runner.Exceptions;
+using System.Net.Http.Headers;
 
 namespace BeFaster.App.Solutions.CHK
 {
@@ -17,9 +18,9 @@ namespace BeFaster.App.Solutions.CHK
         //+------+-------+----------------+
 
 
-        internal class SkuPrice
+        internal class Product
         {
-            public SkuPrice()
+            public Product()
             {
                 SpecialOffers = new List<SpecialOffer>();
             }
@@ -35,23 +36,23 @@ namespace BeFaster.App.Solutions.CHK
             public int Quantity { get; set; }
             public decimal Price { get; set; }
 
-            public SkuPrice SkuPrice { get; set; }
+            public Product SkuPrice { get; set; }
 
         }
 
-        static List<SkuPrice> prices = new List<SkuPrice>() {
+        static List<Product> prices = new List<Product>() {
 
-            new SkuPrice{ SKU = 'A', Price = 50, SpecialOffers = new List<SpecialOffer> {
+            new Product{ SKU = 'A', Price = 50, SpecialOffers = new List<SpecialOffer> {
 
                new  SpecialOffer { Quantity = 3, Price = 130},
             } },
-             new SkuPrice{ SKU = 'B', Price = 30, SpecialOffers =new List<SpecialOffer> {
+             new Product{ SKU = 'B', Price = 30, SpecialOffers =new List<SpecialOffer> {
 
                 new  SpecialOffer { Quantity = 2,Price = 45},
             } },
-             new SkuPrice{ SKU = 'C', Price = 20, SpecialOffers =new List<SpecialOffer>{} },
-             new SkuPrice{ SKU = 'D', Price = 15, SpecialOffers =new List<SpecialOffer> { } },
-             new SkuPrice{ SKU = 'E', Price = 40, SpecialOffers =new List<SpecialOffer> { } },
+             new Product{ SKU = 'C', Price = 20, SpecialOffers =new List<SpecialOffer>{} },
+             new Product{ SKU = 'D', Price = 15, SpecialOffers =new List<SpecialOffer> { } },
+             new Product{ SKU = 'E', Price = 40, SpecialOffers =new List<SpecialOffer> { } },
         };
 
 
@@ -135,6 +136,7 @@ namespace BeFaster.App.Solutions.CHK
         }
     }
 }
+
 
 
 
