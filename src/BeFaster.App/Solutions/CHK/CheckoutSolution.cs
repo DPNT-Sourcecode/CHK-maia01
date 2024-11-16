@@ -60,7 +60,7 @@ namespace BeFaster.App.Solutions.CHK
                 if (!char.IsLetter(sku))
                     continue;
 
-                if (skuQty.ContainsKey(sku))
+                if (skuQty.ContainsKey(Char.ToUpper(sku)))
                     skuQty[Char.ToUpper(sku)]++;
                 else
                 {
@@ -69,6 +69,9 @@ namespace BeFaster.App.Solutions.CHK
             }
 
             if(skuQty.Keys.Count ==0)
+                return -1;
+
+            if (!skuQty.Keys.Any( x=> !x.Equals(prices.Select(x=> x.SKU))))
                 return -1;
 
             int totalprice = 0;
@@ -114,6 +117,7 @@ namespace BeFaster.App.Solutions.CHK
         }
     }
 }
+
 
 
 
