@@ -144,19 +144,8 @@ namespace BeFaster.App.Solutions.CHK
 
                             if (productOffer.SKU == product.SKU)
                             {
-                                if (skuQtyDict[product.SKU] - offer.Quantity > 0)
-                                {
+                                toDeduct = RecursiveDiscount(skuQtyDict[product.SKU], 0);
 
-                                }
-                                else
-                                {
-
-                                    toDeduct -= 1;
-
-                                }
-                            }
-                            else { 
-                            
                             }
 
                             if (skuQtyDict.ContainsKey(productOffer.SKU) && skuQtyDict[productOffer.SKU] >= productOffer.Quantity)
@@ -249,21 +238,21 @@ namespace BeFaster.App.Solutions.CHK
         }
 
 
-        private static int RecursiveDiscount(int total, int totalDiscountSoFar = 0) {
+        private static int RecursiveDiscount(int total, int totalDiscountSoFar) {
 
 
             if (total <= 2)
                 return totalDiscountSoFar;
 
-            return RecursiveDiscount(total-3, totalDiscountSoFar++); // 2, 0
+            return RecursiveDiscount(total-3, ++totalDiscountSoFar); // 2, 0
                                                                        // 3 => 1, 1
                                                                        // 4 => 2, 1
                                                                        // 5 => 3(1) , 1 
                                                                        // 6 => 4 (1), 1 + 1
-
         }
     }
 
 
 }
+
 
