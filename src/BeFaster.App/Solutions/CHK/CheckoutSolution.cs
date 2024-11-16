@@ -18,6 +18,8 @@ namespace BeFaster.App.Solutions.CHK
         //+------+-------+----------------+
 
 
+      
+
         internal class Product
         {
             public Product()
@@ -36,7 +38,9 @@ namespace BeFaster.App.Solutions.CHK
             public int Quantity { get; set; }
             public decimal Price { get; set; }
 
-            public Product SkuPrice { get; set; }
+            public int Type { get; set; } = 0;
+
+            public Product Product { get; set; }
 
         }
 
@@ -52,7 +56,10 @@ namespace BeFaster.App.Solutions.CHK
             } },
              new Product{ SKU = 'C', Price = 20, SpecialOffers =new List<SpecialOffer>{} },
              new Product{ SKU = 'D', Price = 15, SpecialOffers =new List<SpecialOffer> { } },
-             new Product{ SKU = 'E', Price = 40, SpecialOffers =new List<SpecialOffer> { } },
+             new Product{ SKU = 'E', Price = 40, SpecialOffers =new List<SpecialOffer> {
+             
+                 new SpecialOffer  { Quantity = 2, Type = 1, SkuPrice}
+             } },
         };
 
 
@@ -136,6 +143,7 @@ namespace BeFaster.App.Solutions.CHK
         }
     }
 }
+
 
 
 
