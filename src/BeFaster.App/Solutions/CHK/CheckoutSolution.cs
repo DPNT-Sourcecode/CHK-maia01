@@ -232,12 +232,15 @@ namespace BeFaster.App.Solutions.CHK
                 {
                     foreach (var sku in bundleProductSkus)
                     {
+                        while (skuQtyDict[sku] != 0 && i != 0) {
+
+                            skuQtyDict[sku]--;
+                            i--;
+                        }
 
                         if (skuQtyDict[sku]==0)
                             continue;
 
-                        skuQtyDict[sku]--;
-                        i--;
                         if (i == 0)
                             break;
                     }
@@ -427,6 +430,7 @@ namespace BeFaster.App.Solutions.CHK
 
 
 }
+
 
 
 
