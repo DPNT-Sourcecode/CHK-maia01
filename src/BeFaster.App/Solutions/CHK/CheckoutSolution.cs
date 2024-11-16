@@ -117,11 +117,11 @@ namespace BeFaster.App.Solutions.CHK
 
             var specialOffers = productPrices.ToList().Where(x => x.SpecialOffers.Count > 0 && x.SpecialOffers.Any(x => x.Type == 1)).ToList();
 
-            foreach (var products in specialOffers)
+            foreach (var product in specialOffers)
             {
-                if (skuQtyDict.ContainsKey(products.SKU) && products.SpecialOffers.Any(x => x.Quantity <= skuQtyDict[products.SKU]))
+                if (skuQtyDict.ContainsKey(product.SKU) && product.SpecialOffers.Any(x => x.Quantity <= skuQtyDict[product.SKU]))
 
-                    foreach (var offer in products.SpecialOffers)
+                    foreach (var offer in product.SpecialOffers)
                     {
                         foreach (var productOffer in offer.ProductOffers)
                         {
@@ -129,9 +129,18 @@ namespace BeFaster.App.Solutions.CHK
                             // 1             3                        / 2
                             int toDeduct = 0;
 
-                            if (skuQtyDict[products.SKU] > 2)
+                            if (skuQtyDict[product.SKU] > 2)
                             {
-                                toDeduct = skuQtyDict[products.SKU] / offer.Quantity;
+                                toDeduct = skuQtyDict[product.SKU] / offer.Quantity;
+                            }
+
+                            if (productOffer.SKU == product.SKU) {
+
+                                var totalQty = skuQtyDict[product.SKU];
+
+
+
+
                             }
 
                             if (skuQtyDict.ContainsKey(productOffer.SKU) && skuQtyDict[productOffer.SKU] >= productOffer.Quantity)
@@ -226,4 +235,5 @@ namespace BeFaster.App.Solutions.CHK
 
 
 }
+
 
