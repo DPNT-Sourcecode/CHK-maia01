@@ -42,6 +42,7 @@ namespace BeFaster.App.Solutions.CHK
             } },
              new SkuPrice{ SKU = 'C', Price = 20, SpecialOffers =new List<SpecialOffer>{} },
              new SkuPrice{ SKU = 'D', Price = 15, SpecialOffers =new List<SpecialOffer> { } },
+             new SkuPrice{ SKU = 'E', Price = 40, SpecialOffers =new List<SpecialOffer> { } },
         };
 
 
@@ -122,5 +123,6 @@ namespace BeFaster.App.Solutions.CHK
         }
     }
 }
+
 
 
