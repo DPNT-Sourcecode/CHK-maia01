@@ -40,8 +40,14 @@ namespace BeFaster.App.Solutions.CHK
 
             public int Type { get; set; } = 0;
 
-            public Product Product { get; set; }
+            public List<ProductOffer> ProductOffers{ get; set; }
 
+        }
+
+        public class ProductOffer
+        {
+            public char Sku { get; set; }
+            public int Quantity { get; set; }
         }
 
         static List<Product> prices = new List<Product>() {
@@ -56,9 +62,10 @@ namespace BeFaster.App.Solutions.CHK
             } },
              new Product{ SKU = 'C', Price = 20, SpecialOffers =new List<SpecialOffer>{} },
              new Product{ SKU = 'D', Price = 15, SpecialOffers =new List<SpecialOffer> { } },
+
              new Product{ SKU = 'E', Price = 40, SpecialOffers =new List<SpecialOffer> {
              
-                 new SpecialOffer  { Quantity = 2, Type = 1, SkuPrice}
+                 new SpecialOffer  { Quantity = 2, Type = 1, Product }
              } },
         };
 
@@ -142,9 +149,6 @@ namespace BeFaster.App.Solutions.CHK
             return totalPrice;
         }
     }
+
+   
 }
-
-
-
-
-
