@@ -30,6 +30,15 @@ namespace BeFaster.App.Solutions.CHK
             public List<SpecialOffer> SpecialOffers { get; set; }
         }
 
+        internal class SpecialOffer
+        {
+            public int Quantity { get; set; }
+            public decimal Price { get; set; }
+
+            public SkuPrice SkuPrice { get; set; }
+
+        }
+
         static List<SkuPrice> prices = new List<SkuPrice>() {
 
             new SkuPrice{ SKU = 'A', Price = 50, SpecialOffers = new List<SpecialOffer> {
@@ -54,7 +63,7 @@ namespace BeFaster.App.Solutions.CHK
             if (String.IsNullOrWhiteSpace(skus))
                 return 0;
 
-            Dictionary<char, int> skuQty = new Dictionary<char, int>();
+            Dictionary<char, int> skuQtyDict = new Dictionary<char, int>();
 
             foreach (char sku in skus)
             {
@@ -64,25 +73,28 @@ namespace BeFaster.App.Solutions.CHK
                 if (!prices.Select(x => x.SKU).ToList().Any(x => x.Equals(sku)))
                     return -1;
 
-                if (skuQty.ContainsKey(sku))
-                    skuQty[sku]++;
+                if (skuQtyDict.ContainsKey(sku))
+                    skuQtyDict[sku]++;
                 else
                 {
-                    skuQty.Add( sku, 1);
+                    skuQtyDict.Add( sku, 1);
                 }
             }
 
-            if(skuQty.Keys.Count ==0)
+            //TODO: deduct the qty for B if we have E or any 
+           
+
+            if(skuQtyDict.Keys.Count ==0)
                 return -1;
 
-            if (!skuQty.Keys.Any( x=> !x.Equals(prices.Select(x=> x.SKU))))
+            if (!skuQtyDict.Keys.Any( x=> !x.Equals(prices.Select(x=> x.SKU))))
                 return -1;
 
             int totalprice = 0;
 
-            foreach (var kvp in skuQty.Keys)
+            foreach (var kvp in skuQtyDict.Keys)
             {
-                decimal price = GetPriceOfSkuWithQty(kvp, skuQty[kvp]);
+                decimal price = GetPriceOfSkuWithQty(kvp, skuQtyDict[kvp]);
                 totalprice += (int)price;
             }
 
