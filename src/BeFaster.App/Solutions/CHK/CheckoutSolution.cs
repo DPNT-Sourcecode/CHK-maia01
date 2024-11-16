@@ -84,6 +84,31 @@ namespace BeFaster.App.Solutions.CHK
 
               new Product{ SKU = 'G', Price = 20, SpecialOffers =new List<SpecialOffer> { } },
 
+              new Product{ SKU = 'H', Price = 50, SpecialOffers = new List<SpecialOffer> {
+
+                   new  SpecialOffer { Quantity = 5, Price = 45},
+                   new  SpecialOffer { Quantity = 10, Price = 80},
+                } },
+              
+            new Product{ SKU = 'I', Price = 35, SpecialOffers =new List<SpecialOffer> { } },
+            new Product{ SKU = 'J', Price = 60, SpecialOffers =new List<SpecialOffer> { } },
+
+            new Product{ SKU = 'K', Price = 80, SpecialOffers =new List<SpecialOffer> {
+
+                new  SpecialOffer { Quantity = 2,Price = 150},
+            } },
+
+            new Product{ SKU = 'L', Price = 90, SpecialOffers =new List<SpecialOffer> { } },
+            new Product{ SKU = 'M', Price = 15, SpecialOffers =new List<SpecialOffer> { } },
+
+            new Product{ SKU = 'N', Price = 40, SpecialOffers =new List<SpecialOffer> {
+
+                 new SpecialOffer  { Quantity = 2, Type = 1, ProductOffers = new List<ProductOffer>{
+
+                 new ProductOffer  { SKU = 'F', Quantity =1, }
+                 } }
+             } },
+
 
         };
 
@@ -254,4 +279,5 @@ namespace BeFaster.App.Solutions.CHK
 
 
 }
+
 
