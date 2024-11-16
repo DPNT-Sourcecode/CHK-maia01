@@ -55,6 +55,7 @@ namespace BeFaster.App.Solutions.CHK
             new Product{ SKU = 'A', Price = 50, SpecialOffers = new List<SpecialOffer> {
 
                new  SpecialOffer { Quantity = 3, Price = 130},
+                 new  SpecialOffer { Quantity = 5, Price = 200},
             } },
              new Product{ SKU = 'B', Price = 30, SpecialOffers =new List<SpecialOffer> {
 
@@ -156,7 +157,7 @@ namespace BeFaster.App.Solutions.CHK
                     {
 
                         if (remainingQuantity < specialOffer.Quantity)
-                            break;
+                            continue;
 
                         remainingQuantity -= specialOffer.Quantity;
                         totalPrice += specialOffer.Price;
@@ -177,6 +178,7 @@ namespace BeFaster.App.Solutions.CHK
 
 
 }
+
 
 
 
