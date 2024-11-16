@@ -152,14 +152,14 @@ namespace BeFaster.App.Solutions.CHK
 
             var skuprice = productPrices.FirstOrDefault(x => x.SKU == sku);
 
-            skuprice.SpecialOffers = skuprice.SpecialOffers.Where(x => x.Type == 0).ToList();
+            var specialOffers = skuprice.SpecialOffers.Where(x => x.Type == 0).ToList();
 
-            if (skuprice.SpecialOffers?.Count > 0)
+            if (specialOffers.Count > 0)
             {
-                while (remainingQuantity > 0 && skuprice.SpecialOffers.Any(x => x.Quantity <= remainingQuantity))
+                while (remainingQuantity > 0 && specialOffers.Any(x => x.Quantity <= remainingQuantity))
                 {
 
-                    var specialOffer = skuprice.SpecialOffers?.Where(x => x.Quantity <= remainingQuantity).OrderByDescending(x => x.Quantity).FirstOrDefault();
+                    var specialOffer = specialOffers?.Where(x => x.Quantity <= remainingQuantity).OrderByDescending(x => x.Quantity).FirstOrDefault();
 
 
                     if (remainingQuantity < specialOffer.Quantity)
