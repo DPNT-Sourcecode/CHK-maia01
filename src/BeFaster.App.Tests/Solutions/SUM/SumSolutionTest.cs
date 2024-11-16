@@ -24,13 +24,13 @@ namespace BeFaster.App.Tests.Solutions.SUM
             return CheckoutSolution.ComputePrice(x);
         }
 
-        [TestCase("EEEB", ExpectedResult = 120)]
+        [TestCase("FFFF", ExpectedResult = 30)]
         public int ComputePrice2(string x)
         {
             return CheckoutSolution.ComputePrice(x);
         }
 
-        [TestCase("EEEEBB", ExpectedResult = 160)]
+        [TestCase("FFFFFF", ExpectedResult = 40)]
         public int ComputePrice3(string x)
         {
             return CheckoutSolution.ComputePrice(x);
@@ -40,4 +40,5 @@ namespace BeFaster.App.Tests.Solutions.SUM
         
     }
 }
+
 
