@@ -214,18 +214,18 @@ namespace BeFaster.App.Solutions.CHK
             }
 
             //TODO : if we have enough qty in dictionary so that we match any bundle - reduce products and increase price
-            var bundle = BundleMatch(skuQtyDict, bundleOffers);
+            var response = BundleMatch(skuQtyDict, bundleOffers);
 
-            while (bundle != null)
+            while (response.bundle != null)
             {
 
                 //foreach (char productSkuInBundle in ) { 
 
                 List<char> bundleProductSkus = productPrices.OrderByDescending(x => x.Price)
-                                     .Where(x => bundle.ProductSkus.Contains(x.SKU))
-                                    .Take(bundle.BundleQuantity).Select(x => x.SKU).ToList();
+                                     .Where(x => response.matchedSkus.Contains(x.SKU))
+                                    .Take(response.bundle.BundleQuantity).Select(x => x.SKU).ToList();
 
-                totalprice += (int)bundle.Price;
+                totalprice += (int)response.bundle.Price;
 
                 foreach (var sku in bundleProductSkus)
                 {
@@ -233,7 +233,7 @@ namespace BeFaster.App.Solutions.CHK
                 }
 
 
-                bundle = BundleMatch(skuQtyDict, bundleOffers);
+                response = BundleMatch(skuQtyDict, bundleOffers);
             }
 
 
@@ -316,7 +316,7 @@ namespace BeFaster.App.Solutions.CHK
             return totalprice - totaldiscount;
         }
 
-        private static BundleOffer? BundleMatch(Dictionary<char, int> skuQtyDict, List<BundleOffer> bundleOffers)
+        private static (BundleOffer? bundle, List<char> matchedSkus) BundleMatch(Dictionary<char, int> skuQtyDict, List<BundleOffer> bundleOffers)
         {
 
 
@@ -343,13 +343,16 @@ namespace BeFaster.App.Solutions.CHK
                 foreach (var key in matchesForProductSku.Keys)
                 {
                     if (matchesForProductSku[key] == 0)
+                    {
+                        matchedSkus.Add(key);
                         totalMatches++;
+                    }
                 }
 
-                return bundle;
+                return (bundle, matchedSkus);
             }
 
-            return null;
+            return (null,null);
         }
 
         private static decimal GetPriceOfSkuWithQty(char sku, int quantity)
@@ -410,4 +413,5 @@ namespace BeFaster.App.Solutions.CHK
 
 
 }
+
 
