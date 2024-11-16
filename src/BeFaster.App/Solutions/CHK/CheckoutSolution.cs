@@ -128,22 +128,11 @@ namespace BeFaster.App.Solutions.CHK
                     {
                         foreach (var productOffer in offer.ProductOffers)
                         {
-                            // 1             2                        / 2
-                            // 1             3                        / 2
                             int toDeduct = 0;
 
-                            if (skuQtyDict[product.SKU] > 2)
-                            {
-                                toDeduct = skuQtyDict[product.SKU] / offer.Quantity;
-                            }
 
-                            //2 > 0
-                            // 3,4 > 1,1
-                            // 5,6 > 1,2
-                            //7,8 > 
+                            toDeduct = skuQtyDict[product.SKU] / offer.Quantity;
 
-                            // 4 / (offer )2  => 2 
-                            // 
 
                             if (productOffer.SKU == product.SKU)
                             {
@@ -162,8 +151,6 @@ namespace BeFaster.App.Solutions.CHK
                                 {
 
                                 }
-
-                                //skuQtyDict[productOffer.SKU] = skuQtyDict[productOffer.SKU]  - productOffer.Quantity * toDeduct;
 
                             }
 
@@ -241,13 +228,14 @@ namespace BeFaster.App.Solutions.CHK
         }
 
 
-        private static int RecursiveDiscount(int total, int totalDiscountSoFar) {
+        private static int RecursiveDiscount(int total, int totalDiscountSoFar)
+        {
 
 
             if (total <= 2)
                 return totalDiscountSoFar;
 
-            return RecursiveDiscount(total-3, ++totalDiscountSoFar); // 2, 0
+            return RecursiveDiscount(total - 3, ++totalDiscountSoFar); // 2, 0
                                                                        // 3 => 1, 1
                                                                        // 4 => 2, 1
                                                                        // 5 => 3(1) , 1 
@@ -257,6 +245,7 @@ namespace BeFaster.App.Solutions.CHK
 
 
 }
+
 
 
 
