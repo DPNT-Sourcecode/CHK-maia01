@@ -148,6 +148,8 @@ namespace BeFaster.App.Solutions.CHK
 
             var skuprice = productPrices.FirstOrDefault(x => x.SKU == sku);
 
+            skuprice.SpecialOffers = skuprice.SpecialOffers.Where(x => x.Type == 0).ToList();
+
             if (skuprice.SpecialOffers?.Count > 0)
             {
                 while (remainingQuantity > 0 && skuprice.SpecialOffers.Any(x => x.Quantity <= remainingQuantity))
@@ -178,10 +180,3 @@ namespace BeFaster.App.Solutions.CHK
 
 
 }
-
-
-
-
-
-
-
