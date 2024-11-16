@@ -93,7 +93,7 @@ namespace BeFaster.App.Solutions.CHK
                 return 0;
 
             Dictionary<char, int> skuQtyDict = new Dictionary<char, int>();
-            Dictionary<char, int> skuQtyDict = new Dictionary<char, int>();
+            Dictionary<char, int> discountDict = new Dictionary<char, int>();
 
             foreach (char sku in skus)
             {
@@ -129,8 +129,20 @@ namespace BeFaster.App.Solutions.CHK
                             // 1             3                        / 2
                             int toDeduct = skuQtyDict[products.SKU] / offer.Quantity;
 
-                            if (skuQtyDict.ContainsKey(productOffer.SKU) && skuQtyDict[productOffer.SKU] >= productOffer.Quantity)
-                                skuQtyDict[productOffer.SKU] = skuQtyDict[productOffer.SKU]  - productOffer.Quantity * toDeduct;
+                            if (skuQtyDict.ContainsKey(productOffer.SKU) && skuQtyDict[productOffer.SKU] >= productOffer.Quantity) {
+
+                                if (!discountDict.ContainsKey(productOffer.SKU))
+                                {
+                                    discountDict.Add(productOffer.SKU, productOffer.Quantity * toDeduct);
+                                }
+                                else { 
+                                
+                                }
+
+                                //skuQtyDict[productOffer.SKU] = skuQtyDict[productOffer.SKU]  - productOffer.Quantity * toDeduct;
+
+                            }
+
                           
                         }
                     }
@@ -200,8 +212,3 @@ namespace BeFaster.App.Solutions.CHK
 
 
 }
-
-
-
-
-
