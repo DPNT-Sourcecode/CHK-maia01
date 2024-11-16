@@ -309,18 +309,18 @@ namespace BeFaster.App.Solutions.CHK
 
                 foreach (var product in bundle.ProductSkus)
                 {
-                    arr[product - 'A']--;
+                    arr[product - 'A' % arr.Length]++;
                 }
 
                 foreach (var key in skuQtyDict.Keys)
                 {
-                    arr[key - 'A']++;
+                    arr[key - 'A' % arr.Length]--;
                 }
 
 
                 foreach (var item in arr)
                 {
-
+                    if(item )
                 }
 
 
@@ -388,6 +388,7 @@ namespace BeFaster.App.Solutions.CHK
 
 
 }
+
 
 
 
