@@ -21,6 +21,8 @@ namespace BeFaster.App.Solutions.CHK
 
             public char SKU { get; set; }
             public decimal Price { get; set; }
+
+            public Dictionary<int,int> SpecialOffers { get; set; }
         }
 
         static List<SkuPrice> prices = new List<SkuPrice>() {
@@ -44,4 +46,5 @@ namespace BeFaster.App.Solutions.CHK
         }
     }
 }
+
 
