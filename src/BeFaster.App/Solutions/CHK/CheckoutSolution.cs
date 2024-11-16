@@ -255,15 +255,11 @@ namespace BeFaster.App.Solutions.CHK
             if (total == 2)
                 return totalDiscountSoFar;
 
-            return RecursiveDiscount(total - 1, totalDiscountSoFar++);
+            return RecursiveDiscount(total--, totalDiscountSoFar++); // 4 => 3,1 => 
+                                                                       // 3 => 2, 2
 
         }
     }
 
 
 }
-
-
-
-
-
