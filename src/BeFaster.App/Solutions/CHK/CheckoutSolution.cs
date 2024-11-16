@@ -108,20 +108,21 @@ namespace BeFaster.App.Solutions.CHK
 
             foreach (var specialOffer in specialOffers)
             {
-                if (skuQtyDict.ContainsKey(specialOffer.SKU) && specialOffer.SpecialOffers.Any(x=>x.Quantity <= skuQtyDict[specialOffer.SKU]))
+                if (skuQtyDict.ContainsKey(specialOffer.SKU) && specialOffer.SpecialOffers.Any(x => x.Quantity <= skuQtyDict[specialOffer.SKU]))
 
                     foreach (var offer in specialOffer.SpecialOffers)
                     {
-                        foreach (var productOffer in offer.ProductOffers) {
+                        foreach (var productOffer in offer.ProductOffers)
+                        {
 
                             if (skuQtyDict.ContainsKey(productOffer.SKU) && skuQtyDict[productOffer.SKU] >= productOffer.Quantity)
                                 skuQtyDict[productOffer.SKU]--;
                         }
                     }
-             
+
 
             }
-            
+
 
 
             if (skuQtyDict.Keys.Count == 0)
@@ -155,17 +156,15 @@ namespace BeFaster.App.Solutions.CHK
                 while (remainingQuantity > 0 && skuprice.SpecialOffers.Any(x => x.Quantity <= remainingQuantity))
                 {
 
-                    foreach (var specialOffer in skuprice.SpecialOffers?.OrderByDescending(x => x.Quantity))
-                    {
-
-                        if (remainingQuantity < specialOffer.Quantity)
-                            continue;
-
-                        remainingQuantity -= specialOffer.Quantity;
-                        totalPrice += specialOffer.Price;
+                    var specialOffer = skuprice.SpecialOffers?.Where(x => x.Quantity <= remainingQuantity).OrderByDescending(x => x.Quantity).FirstOrDefault();
 
 
-                    }
+                    if (remainingQuantity < specialOffer.Quantity)
+                        continue;
+
+                    remainingQuantity -= specialOffer.Quantity;
+                    totalPrice += specialOffer.Price;
+
 
                 }
             }
@@ -180,3 +179,4 @@ namespace BeFaster.App.Solutions.CHK
 
 
 }
+
