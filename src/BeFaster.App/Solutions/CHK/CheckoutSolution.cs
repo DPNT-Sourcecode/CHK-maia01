@@ -51,7 +51,8 @@ namespace BeFaster.App.Solutions.CHK
             public int Quantity { get; set; }
         }
 
-        class BundleOffer {
+        class BundleOffer
+        {
 
 
             public string Name { get; set; }
@@ -68,7 +69,7 @@ namespace BeFaster.App.Solutions.CHK
 
                 Name ="Summer Bundle",
                 Price = 45,
-
+                BundleQuantity = 3,
                 ProductSkus = new List<char>(){ 'S','T', 'X', 'Y', 'Z' }
 
             }
@@ -212,12 +213,12 @@ namespace BeFaster.App.Solutions.CHK
 
             //TODO : if we have enough qty in dictionary so that we match any bundle - reduce products and increase price
 
-            foreach (var bundle in bundleOffers)
+            while (BundleMatch(skuQtyDict, bundleOffers))
             {
 
-
-
             }
+
+
 
             //TODO: deduct the qty for B if we have E or any 
 
@@ -297,6 +298,17 @@ namespace BeFaster.App.Solutions.CHK
             return totalprice - totaldiscount;
         }
 
+        private static bool BundleMatch(Dictionary<char, int> skuQtyDict, List<BundleOffer> bundleOffers)
+        {
+
+
+            foreach (var bundle in bundleOffers)
+            {
+                int[] arr = new int[26];
+
+            }
+        }
+
         private static decimal GetPriceOfSkuWithQty(char sku, int quantity)
         {
             int remainingQuantity = quantity;
@@ -346,15 +358,16 @@ namespace BeFaster.App.Solutions.CHK
                 return totalDiscountSoFar;
 
             return RecursiveDiscount(total - discounton - 1, ++totalDiscountSoFar, discounton); // 2, 0
-                                                                       // 3 => 1, 1
-                                                                       // 4 => 2, 1
-                                                                       // 5 => 3(1) , 1 
-                                                                       // 6 => 4 (1), 1 + 1
+                                                                                                // 3 => 1, 1
+                                                                                                // 4 => 2, 1
+                                                                                                // 5 => 3(1) , 1 
+                                                                                                // 6 => 4 (1), 1 + 1
         }
     }
 
 
 }
+
 
 
 
