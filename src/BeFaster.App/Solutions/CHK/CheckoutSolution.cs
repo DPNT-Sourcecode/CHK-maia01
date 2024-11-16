@@ -1,5 +1,6 @@
 ﻿using BeFaster.App.Solutions.CHK;
 using BeFaster.Runner.Exceptions;
+using System.Linq;
 using System.Net.Http.Headers;
 using System.Runtime.CompilerServices;
 
@@ -185,12 +186,13 @@ namespace BeFaster.App.Solutions.CHK
 
         public static int ComputePrice(string? skus)
         {
+            int totalprice = 0;
 
             String.Concat(skus.OrderBy(c => c));
 
 
             if (String.IsNullOrWhiteSpace(skus))
-                return 0;
+                return totalprice;
 
             Dictionary<char, int> skuQtyDict = new Dictionary<char, int>();
             Dictionary<char, int> discountDict = new Dictionary<char, int>();
@@ -218,14 +220,18 @@ namespace BeFaster.App.Solutions.CHK
             {
 
                 //foreach (char productSkuInBundle in ) { 
-                
-                    List<char> Skus = productPrices.OrderByDescending(x=>x.Price).Take(bundle.BundleQuantity).Select(x=>x.SKU).ToList();
 
-                    foreach (var sku in Skus)
-                    {
+                List<char> bundleProductSkus = productPrices.OrderByDescending(x => x.Price)
+                                     .Where(x => bundle.ProductSkus.Contains(x.SKU))
+                                    .Take(bundle.BundleQuantity).Select(x => x.SKU).ToList();
 
-                    }
-               
+                totalprice += (int)bundle.Price;
+
+                foreach (var sku in bundleProductSkus)
+                {
+                    skuQtyDict[sku]--;
+                }
+
 
                 bundle = BundleMatch(skuQtyDict, bundleOffers);
             }
@@ -292,7 +298,7 @@ namespace BeFaster.App.Solutions.CHK
             if (!skuQtyDict.Keys.Any(x => !x.Equals(productPrices.Select(x => x.SKU))))
                 return -1;
 
-            int totalprice = 0;
+
             int totaldiscount = 0;
 
             foreach (var kvp in skuQtyDict.Keys)
@@ -316,26 +322,27 @@ namespace BeFaster.App.Solutions.CHK
 
             foreach (var bundle in bundleOffers)
             {
-                
+
                 Dictionary<char, int> matchesForProductSku = new Dictionary<char, int>();
+                List<char> matchedSkus = new List<char>();
                 int totalMatches = 0;
 
                 foreach (var product in bundle.ProductSkus)
                 {
-                    
+
                     matchesForProductSku.Add(product, 1);
                 }
 
                 foreach (var key in skuQtyDict.Keys)
                 {
-                    if(matchesForProductSku.ContainsKey(key))
+                    if (matchesForProductSku.ContainsKey(key))
                         matchesForProductSku[key]--;
                 }
 
 
                 foreach (var key in matchesForProductSku.Keys)
                 {
-                    if (matchesForProductSku[key] ==0)
+                    if (matchesForProductSku[key] == 0)
                         totalMatches++;
                 }
 
@@ -403,3 +410,4 @@ namespace BeFaster.App.Solutions.CHK
 
 
 }
+
