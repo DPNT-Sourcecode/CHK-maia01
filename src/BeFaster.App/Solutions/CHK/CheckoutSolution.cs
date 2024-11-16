@@ -34,27 +34,34 @@ namespace BeFaster.App.Solutions.CHK
 
         public static int ComputePrice(string? skus)
         {
-            int qty = 0;
-            char product;
+
+            if (String.IsNullOrEmpty(skus))
+                return -1;
+
+            Dictionary<char, int> skuQty = new Dictionary<char, int>();
 
             foreach (char sku in skus)
             {
-                if(Char.IsLetter(sku))
-                    product = sku;
-                else qty = sku;
+                if (skuQty.ContainsKey(sku))
+                    skuQty[sku]++;
+                else
+                {
+                    skuQty.Add(sku, 1);
+                }
+            }
 
+            int totalprice = 0;
 
-                if (sku < 65 || sku > 68)
-                    return -1;
-
-
+            foreach (var kvp in skuQty.Keys)
+            {
 
             }
 
-            return 1;
+            return totalprice;
         }
     }
 }
+
 
 
 
