@@ -103,7 +103,9 @@ namespace BeFaster.App.Solutions.CHK
 
             List<ProductOffer> productOffers = new List<ProductOffer>();
 
-            productOffers = prod
+            var specialOffers = productPrices.ToList().Where(x => x.SpecialOffers.Count > 0 && x.SpecialOffers.Any(x => x.Type == 1)).ToList();
+
+
             
 
 
@@ -161,4 +163,5 @@ namespace BeFaster.App.Solutions.CHK
 
 
 }
+
 
