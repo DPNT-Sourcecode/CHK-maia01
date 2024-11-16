@@ -252,14 +252,18 @@ namespace BeFaster.App.Solutions.CHK
         private static int RecursiveDiscount(int total, int totalDiscountSoFar = 0) {
 
 
-            if (total == 2)
+            if (total <= 2)
                 return totalDiscountSoFar;
 
-            return RecursiveDiscount(total--, totalDiscountSoFar++); // 4 => 3,1 => 
-                                                                       // 3 => 2, 2
+            return RecursiveDiscount(total-3, totalDiscountSoFar++); // 2, 0
+                                                                       // 3 => 1, 1
+                                                                       // 4 => 2, 1
+                                                                       // 5 => 3(1) , 1 
+                                                                       // 6 => 4 (1), 1 + 1
 
         }
     }
 
 
 }
+
