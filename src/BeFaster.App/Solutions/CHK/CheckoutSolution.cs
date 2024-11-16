@@ -217,7 +217,15 @@ namespace BeFaster.App.Solutions.CHK
             while (bundle != null)
             {
 
-                foreach (char sku in bundle)
+                //foreach (char productSkuInBundle in ) { 
+                
+                    List<char> Skus = productPrices.OrderByDescending(x=>x.Price).Take(bundle.BundleQuantity).Select(x=>x.SKU).ToList();
+
+                    foreach (var sku in Skus)
+                    {
+
+                    }
+               
 
                 bundle = BundleMatch(skuQtyDict, bundleOffers);
             }
@@ -395,11 +403,3 @@ namespace BeFaster.App.Solutions.CHK
 
 
 }
-
-
-
-
-
-
-
-
