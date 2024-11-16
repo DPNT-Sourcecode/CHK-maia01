@@ -107,7 +107,7 @@ namespace BeFaster.App.Solutions.CHK
 
             foreach (var specialOffer in specialOffers)
             {
-                if (skuQtyDict.ContainsKey(specialOffer.SKU) && specialOffer.SpecialOffers.Any(x=>x.Quantity >= skuQtyDict[specialOffer.SKU]))
+                if (skuQtyDict.ContainsKey(specialOffer.SKU) && specialOffer.SpecialOffers.Any(x=>x.Quantity <= skuQtyDict[specialOffer.SKU]))
 
                     foreach (var offer in specialOffer.SpecialOffers)
                     {
@@ -177,6 +177,7 @@ namespace BeFaster.App.Solutions.CHK
 
 
 }
+
 
 
 
