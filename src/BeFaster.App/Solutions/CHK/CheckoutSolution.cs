@@ -210,6 +210,15 @@ namespace BeFaster.App.Solutions.CHK
                 }
             }
 
+            //TODO : if we have enough qty in dictionary so that we match any bundle - reduce products and increase price
+
+            foreach (var bundle in bundleOffers)
+            {
+
+
+
+            }
+
             //TODO: deduct the qty for B if we have E or any 
 
             List<ProductOffer> productOffers = new List<ProductOffer>();
@@ -346,5 +355,6 @@ namespace BeFaster.App.Solutions.CHK
 
 
 }
+
 
 
