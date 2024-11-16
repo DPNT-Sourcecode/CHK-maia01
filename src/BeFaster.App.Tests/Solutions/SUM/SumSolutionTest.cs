@@ -1,4 +1,5 @@
-﻿using BeFaster.App.Solutions.SUM;
+﻿using BeFaster.App.Solutions.CHK;
+using BeFaster.App.Solutions.SUM;
 using NUnit.Framework;
 
 namespace BeFaster.App.Tests.Solutions.SUM
@@ -12,4 +13,16 @@ namespace BeFaster.App.Tests.Solutions.SUM
             return SumSolution.Sum(x, y);
         }
     }
+
+
+    [TestFixture]
+    public class CheckoutSolutionTest
+    {
+        [TestCase(1, 1, ExpectedResult = 2)]
+        public int ComputeSum(int x, int y)
+        {
+            return CheckoutSolution.Sum(x, y);
+        }
+    }
 }
+

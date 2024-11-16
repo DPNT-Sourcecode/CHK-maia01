@@ -19,6 +19,10 @@ namespace BeFaster.App.Solutions.CHK
 
         internal class SkuPrice
         {
+            public SkuPrice()
+            {
+                SpecialOffers = = new List<SpecialOffer>();
+            }
 
             public char SKU { get; set; }
             public decimal Price { get; set; }
@@ -66,6 +70,7 @@ namespace BeFaster.App.Solutions.CHK
             foreach (var kvp in skuQty.Keys)
             {
                 decimal price = GetPriceOfSkuWithQty(kvp, skuQty[kvp]);
+                totalprice += (int)price;
             }
 
             return totalprice;
@@ -89,9 +94,13 @@ namespace BeFaster.App.Solutions.CHK
 
             }
 
+            if (remainingquantity != 0)
+                totalPrice += remainingquantity * skuprice.Price;
 
-            throw new NotImplementedException();
+
+            return totalPrice;
         }
     }
 }
+
 
