@@ -81,6 +81,10 @@ namespace BeFaster.App.Solutions.CHK
                  new ProductOffer  { SKU = 'F', Quantity =1, }
                  } }
              } },
+
+              new Product{ SKU = 'G', Price = 20, SpecialOffers =new List<SpecialOffer> { } },
+
+
         };
 
 
@@ -250,3 +254,4 @@ namespace BeFaster.App.Solutions.CHK
 
 
 }
+
