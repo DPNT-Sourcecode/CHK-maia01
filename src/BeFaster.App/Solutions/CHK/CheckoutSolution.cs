@@ -153,7 +153,7 @@ namespace BeFaster.App.Solutions.CHK
                 while (remainingQuantity > 0 && skuprice.SpecialOffers.Any(x => x.Quantity <= remainingQuantity))
                 {
 
-                    foreach (var specialOffer in skuprice.SpecialOffers?.OrderBy(x => x.Quantity))
+                    foreach (var specialOffer in skuprice.SpecialOffers?.OrderByDescending(x => x.Quantity))
                     {
 
                         if (remainingQuantity < specialOffer.Quantity)
@@ -178,6 +178,7 @@ namespace BeFaster.App.Solutions.CHK
 
 
 }
+
 
 
 
