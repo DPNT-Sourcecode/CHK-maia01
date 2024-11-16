@@ -138,9 +138,17 @@ namespace BeFaster.App.Solutions.CHK
 
                                 var totalQty = skuQtyDict[product.SKU];
 
+                                var discountedItems  = totalQty / offer.Quantity;
 
+                                if (totalQty - offer.Quantity > 0) { 
+                                
+                                }
+                                else
+                                {
 
+                                    toDeduct -= 1;
 
+                                }
                             }
 
                             if (skuQtyDict.ContainsKey(productOffer.SKU) && skuQtyDict[productOffer.SKU] >= productOffer.Quantity)
@@ -235,5 +243,6 @@ namespace BeFaster.App.Solutions.CHK
 
 
 }
+
 
 
