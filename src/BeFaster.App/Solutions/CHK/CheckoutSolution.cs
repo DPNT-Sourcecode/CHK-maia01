@@ -50,7 +50,7 @@ namespace BeFaster.App.Solutions.CHK
         public static int ComputePrice(string? skus)
         {
 
-            if (String.IsNullOrEmpty(skus))
+            if (String.IsNullOrWhiteSpace(skus))
                 return -1;
 
             Dictionary<char, int> skuQty = new Dictionary<char, int>();
@@ -60,14 +60,14 @@ namespace BeFaster.App.Solutions.CHK
                 if (!char.IsLetter(sku))
                     continue;
 
-                if (!prices.Select(x => x.SKU).ToList().Any(x => x.Equals(Char.ToUpper(sku))))
+                if (!prices.Select(x => x.SKU).ToList().Any(x => x.Equals(sku)))
                     return -1;
 
-                if (skuQty.ContainsKey(Char.ToUpper(sku)))
-                    skuQty[Char.ToUpper(sku)]++;
+                if (skuQty.ContainsKey(sku))
+                    skuQty[sku]++;
                 else
                 {
-                    skuQty.Add( Char.ToUpper(sku), 1);
+                    skuQty.Add( sku, 1);
                 }
             }
 
@@ -120,10 +120,3 @@ namespace BeFaster.App.Solutions.CHK
         }
     }
 }
-
-
-
-
-
-
-
