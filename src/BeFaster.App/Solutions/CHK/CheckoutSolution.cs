@@ -51,7 +51,7 @@ namespace BeFaster.App.Solutions.CHK
         {
 
             if (String.IsNullOrWhiteSpace(skus))
-                return -1;
+                return 0;
 
             Dictionary<char, int> skuQty = new Dictionary<char, int>();
 
@@ -120,3 +120,4 @@ namespace BeFaster.App.Solutions.CHK
         }
     }
 }
+
