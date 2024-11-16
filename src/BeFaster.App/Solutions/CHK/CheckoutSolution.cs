@@ -304,21 +304,24 @@ namespace BeFaster.App.Solutions.CHK
 
             foreach (var bundle in bundleOffers)
             {
-                int[] arr = new int[26];
+                
+                Dictionary<char, int> matchesForProductSku = new Dictionary<char, int>();
                 int totalMatches = 0;
 
                 foreach (var product in bundle.ProductSkus)
                 {
-                    arr[product - 'A' % arr.Length]++;
+                    
+                    matchesForProductSku.Add(product, 1);
                 }
 
                 foreach (var key in skuQtyDict.Keys)
                 {
-                    arr[key - 'A' % arr.Length]--;
+                    if(matchesForProductSku.ContainsKey(key))
+                        matchesForProductSku[key]--;
                 }
 
 
-                foreach (var item in arr)
+                foreach (var key in matchesForProductSku.Keys)
                 {
                     if(item )
                 }
@@ -388,6 +391,7 @@ namespace BeFaster.App.Solutions.CHK
 
 
 }
+
 
 
 
