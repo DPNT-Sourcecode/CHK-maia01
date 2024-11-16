@@ -46,7 +46,7 @@ namespace BeFaster.App.Solutions.CHK
 
         public class ProductOffer
         {
-            public char Sku { get; set; }
+            public char SKU { get; set; }
             public int Quantity { get; set; }
         }
 
@@ -67,7 +67,7 @@ namespace BeFaster.App.Solutions.CHK
 
                  new SpecialOffer  { Quantity = 2, Type = 1, ProductOffers = new List<ProductOffer>{
 
-                 new ProductOffer  { Sku = 'B', Quantity =1, }
+                 new ProductOffer  { SKU = 'B', Quantity =1, }
                  } }
              } },
         };
@@ -107,7 +107,17 @@ namespace BeFaster.App.Solutions.CHK
 
             foreach (var specialOffer in specialOffers)
             {
-                if(specialOffer.SKU)
+                if (skuQtyDict.ContainsKey(specialOffer.SKU) && specialOffer.SpecialOffers.Any(x=>x.Quantity >= skuQtyDict[specialOffer.SKU]))
+
+                    foreach (var offer in specialOffer.SpecialOffers)
+                    {
+                        foreach (var productOffer in offer.ProductOffers) {
+
+                            if (skuQtyDict.ContainsKey(productOffer.SKU) && skuQtyDict[productOffer.SKU] >= productOffer.Quantity)
+                                skuQtyDict[productOffer.SKU]--;
+                        }
+                    }
+             
 
             }
             
@@ -167,6 +177,7 @@ namespace BeFaster.App.Solutions.CHK
 
 
 }
+
 
 
 
