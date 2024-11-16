@@ -36,11 +36,8 @@ namespace BeFaster.App.Solutions.CHK
 
                 new  SpecialOffer { Quantity = 2,Price = 45},
             } },
-
              new SkuPrice{ SKU = 'C', Price = 20, SpecialOffers =new List<SpecialOffer>{} },
-
              new SkuPrice{ SKU = 'D', Price = 15, SpecialOffers =new List<SpecialOffer> { } },
-
         };
 
 
@@ -74,14 +71,27 @@ namespace BeFaster.App.Solutions.CHK
             return totalprice;
         }
 
-        private static decimal GetPriceOfSkuWithQty(char kvp, int quantity)
+        private static decimal GetPriceOfSkuWithQty(char sku, int quantity)
         {
             int remainingquantity = quantity;
+            decimal totalPrice = 0;
 
-            if(remainingquantity > prices.Where(x=>x.SKU == kvp).FirstOrDefault().SpecialOffers[])
+            var skuprice = prices.FirstOrDefault(x => x.SKU == sku);
+
+            foreach (var specialOffer in skuprice.SpecialOffers.OrderBy(x=>x.Quantity)) {
+
+                if (remainingquantity < specialOffer.Quantity)
+                    break;
+
+                remainingquantity -= specialOffer.Quantity;
+                totalPrice += specialOffer.Price;
+
+
+            }
 
 
             throw new NotImplementedException();
         }
     }
 }
+
